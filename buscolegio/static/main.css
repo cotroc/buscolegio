@@ -1,0 +1,149 @@
+body {
+    background: #056D63;
+    color: #333333;
+    margin-top: 5rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  .bg-steel {
+    background-color: #F53240;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+  .banner-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .banner-title > div {
+  text-align: center;
+}
+
+  .banner-links {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .banner-links > div {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .profile-head {
+    display: flex;
+    flex-direction: row
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    background-color: #87BB97;
+  }
+
+  .profile-head > div {
+
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .result {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    background-color: #87BB97;
+  }
+
+  .result > div {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .search-result {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .right {
+    align-self: flex-end;
+  }
+  .content-section {
+    background: #DAF5EE; 
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+  }
+  
+  .article-title {
+    color: #444444;
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    word-wrap: break-word;
+    width: 300px;
+  }
+  
+  .article-img {
+    height: 125px;
+    width: 175px;
+  }
+  
+  .article-metadata {
+
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+
+  .media-body {
+    display: inline-flex;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .no-style {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0px;
+  }
+  .account-img {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+  

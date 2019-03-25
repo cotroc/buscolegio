@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block title %}Acceso Denegado{% endblock title %}
+{% block content %}
+<div class="content-section">
+	<h1>Acceso Denegado</h1>
+	<div>{{ message }}</div>
+    <a href="{{ url_for('home')}}">Volver al Inicio</a>
+</div>
+
+{% endblock content %}

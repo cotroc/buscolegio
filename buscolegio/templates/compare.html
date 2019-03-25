@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <div>
+            <div>
+                <h3>Comparando Colegios</h3>
+            </div>
+            <hr>
+        <div>
+        <table class="table table-striped table-sm">
+            <tbody>
+                <tr>
+                    <th scope="row">Nombre</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.name }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Establecido</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.est }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Nivel</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.level }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Profesores</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.teachers }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Aulas</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.classrooms }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Confesion Religiosa</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.rel_conf }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Matricula</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.enrollment }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="row">Cuota</th>
+                    {% for inst in institutos %}
+                     <td>{{ inst.fee }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+{% endblock content %}

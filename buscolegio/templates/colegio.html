@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+      <div class="profile-head">
+        <div>
+            <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
+        </div>
+        <div>
+          <h3 class="account-heading">{{ current_user.username }}</h3>
+          <p class="text-secondary">{{ current_user.email }}</p>
+        </div>
+      </div>
+    </div>
+    <a href="/user/{{ current_user.id }}/update">Actualizar datos</a>
+{% endblock content %}

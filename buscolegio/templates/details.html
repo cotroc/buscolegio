@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+    <article class="content-section">
+            <div class="result">
+                <div>
+                    <img class="article-img" src="{{ url_for('static', filename='profile_pics/' + instituto.cover_picture )}}">
+                </div>
+                <div class="article-metadata">
+                    <ul class="no-style">
+                        <li><a href="{{ url_for('details', instituto_id=instituto.id) }}">{{ instituto.name }}</a></li>
+                        <li><small>Dirección: {{ instituto.address }}</small></li>
+                        <li><small>Teléfono: {{ instituto.phone }}</small></li>
+                        <li><small>Departamento: {{ instituto.state }}</small></li>
+                        <li><small>Localidad: {{ instituto.loc }}</small></li>
+                        <li><small>Email: {{ instituto.email }}</small></li>
+                    </ul>
+                </div>
+                <div class="article-content">
+                    <small>{{ instituto.description }}</small> 
+                </div>
+            </div>
+            <div class="content-section">
+                <table class="table table-striped table-sm">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Establecido en</th>
+                            <td>{{ instituto.est }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nivel</th>
+                            <td>{{ instituto.level }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Profesores</th>
+                            <td>{{ instituto.teachers }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Aulas</th>
+                            <td>{{ instituto.classrooms }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Nivel</th>
+                            <td>{{ instituto.level }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Confesion Religiosa</th>
+                            <td>{{ instituto.rel_conf }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Matrícula</th>
+                            <td>{{ instituto.enrollment }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cuota</th>
+                            <td>{{ instituto.fee }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+        </article>
+{% endblock content %}

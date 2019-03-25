@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <div class="banner-title">
+            <div>
+                <h3>BuscoLegio</h3>
+            </div>    
+            <div>
+                <h5>El sitio para encontrar (y ofrecer) el mejor Colegio.</h5>
+            </div>    
+        </div>
+        <div class="banner-links">
+            <div>
+                <h3><a href="{{ url_for('search') }}">Compara Colegios</a></h3>
+                Busca y compara colegios con horarios, niveles educativos,<br/>
+                actividades extracurriculares
+                y mas.
+            </div>
+            <div>
+                <h3><a href="{{ url_for('colegio')}}">Ingresar Colegio</a></h3>
+                <p>Registra tu colegio y contale al mundo
+                lo que tiene para ofrecer</p>
+            </div>
+        </div>
+    </div>    
+{% endblock content %}

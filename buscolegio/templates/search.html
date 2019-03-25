@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+	<form method="POST" action="">
+    	<div class="flex-row"> 
+    		{{ form.hidden_tag() }}     
+	        {{ form.search(class="form-control", placeholder="Buscar")}}
+	        {{ form.submit(class="btn btn-outline-info") }}
+	    </div>
+	    <hr>
+	</form>
+	<form method="POST" action="">
+		{{ form.hidden_tag() }}
+		{% if institutos | length > 0 %}
+			<div class="search-result">
+				<div>
+					<h3>Resultado de Busqueda</h3>
+				</div>
+				<div>
+					{{ c_form.submit(class="btn btn-outline-info") }}
+				</div>
+			</div>
+			<hr>
+		    {% for instituto in institutos %}
+			<div class="result">
+				<div>
+					<img class="article-img" src="{{ url_for('static', filename='profile_pics/' + instituto.cover_picture )}}">
+			    </div>
+			    <div class="article-metadata">
+			        <ul class="no-style">
+			            <li><a href="{{ url_for('details', instituto_id=instituto.id) }}">{{ instituto.name }}</a></li>
+			            <li><small>Dirección: {{ instituto.address }}</small></li>
+			            <li><small>Teléfono: {{ instituto.phone }}</small></li>
+			            <li><small>Departamento: {{ instituto.state }}</small></li>
+			            <li><small>Localidad: {{ instituto.loc }}</small></li>
+			            <li><small>Email: {{ instituto.email }}</small></li>
+			        </ul>
+			    </div>
+			    <div class="article-content">
+			    	<small>{{ instituto.description }}</small> 
+			    </div>
+			    <div>
+			    	<input type="checkbox" name="selected" value="{{ instituto.id }}"></input>
+			    </div>
+			</div>
+		    {% endfor %}
+		    <hr>
+			<div class="search-result">
+				<div>
+					
+				</div>	
+				<div>
+					{{ c_form.submit(class="btn btn-outline-info") }}
+				</div>
+			</div>
+		{% endif %}
+    </form>
+</div>
+{% endblock content %}
