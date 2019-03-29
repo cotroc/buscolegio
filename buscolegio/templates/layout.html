@@ -19,8 +19,8 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="background-color: #02C8A7;">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Busco-Legio</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <img src="/static/web/logo.png">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation"/>
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
@@ -30,32 +30,12 @@
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                {% if current_user.role == 'inst'%}
-                  <div class="dropdown">
-                      <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Instituto
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        {% if current_user.instituto %}
-                        <a class="dropdown-item disabled" href="{{ url_for('colegio_create') }}">Crear</a>
-                        <a class="dropdown-item" href="{{ url_for('colegio_update') }}">Actualizar</a>
-                        <a class="dropdown-item" href="{{ url_for('extras') }}">Agregar Extras</a>
-                        <a class="dropdown-item" href="/instituto/details/{{ current_user.instituto.id }}">Detalles</a>
-                        {% else %}
-                        <a class="dropdown-item" href="{{ url_for('colegio_create') }}">Crear</a>
-                        <a class="dropdown-item disabled" href="{{ url_for('colegio_update') }}">Actualizar</a>
-                        <a class="dropdown-item" href="{{ url_for('extras') }}">Agregar Extras</a>
-                        <a class="dropdown-item disabled" href="/instituto/details/{{ current_user.instituto.id }}">Detalles</a>
-                        {% endif %}
-                      </div>
-                    </div>
-                {% endif %}    
-              <a class="nav-item nav-link" href="{{ url_for('logout')}}">Salir</a>
-              <a class="nav-item nav-link" href="{{ url_for('user')}}">{{ current_user.username }}</a>
+              {% if current_user.is_authenticated %}    
+              <a class="nav-item nav-link" href="{{ url_for('logout')}}"><img class="icon" src="/static/web/icon_logout.png" alt="Salir"/></a>
+              <a class="nav-item nav-link" href="{{ url_for('user')}}"><img class="icon" src="/static/web/icon_user.png" alt="Usuario"/></a>
               {% else %}
-              <a class="nav-item nav-link" href="/login">Ingresar</a>
-              <a class="nav-item nav-link" href="/register">Registro</a>
+              <a class="nav-item nav-link" href="/login"><img class="icon" src="/static/web/icon_login.png" alt="Ingresar"/></a>
+              <a class="nav-item nav-link" href="/register"><img class="icon" src="/static/web/icon_new_user.png"/></a>
               {% endif %}
             </div>
           </div>

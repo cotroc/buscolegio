@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-    <article class="content-section">
+    <div class="flex-row">
+        {% include 'user_menu.html' %}
+        <article id="grow" class="content-section">
             <div class="result">
                 <div>
                     <img class="article-img" src="{{ url_for('static', filename='profile_pics/' + instituto.cover_picture )}}">
@@ -58,4 +60,5 @@
                 </table>
             </div> 
         </article>
+    </div>
 {% endblock content %}

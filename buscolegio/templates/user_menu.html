@@ -1,0 +1,26 @@
+<div class="content-section">
+  <div class="center">
+    <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
+  </div>
+  <ul class="list-unstyled">
+    <li class="list-group-item">{{ current_user.username}}</li>
+    <li class="list-group-item">{{ current_user.email}}</li>
+  </ul>
+  <ul class="list-group">  
+    {% if current_user.role == 'user' %}
+    <a class="list-group-item" href="{{ url_for('search') }}">Buscar Colegio</a>
+    <a class="list-group-item" href="/user/{{ current_user.id }}/update">Actualizar</a>
+    {% endif %}
+    {% if current_user.role == 'inst' %}
+      {% if current_user.instituto %}
+        <a class="list-group-item disabled" href="{{ url_for('colegio_create')}}">Crear Colegio</a>
+        <a class="list-group-item" href="/instituto/details/{{ current_user.instituto.id }}">Vista Previa</a>
+        <a class="list-group-item" href="{{ url_for('colegio_update') }}">Actualizar</a>
+      {% else %}
+        <a class="list-group-item" href="{{ url_for('colegio_create')}}">Crear Colegio</a>
+        <a class="list-group-item disabled" href="/instituto/details/{{ current_user.instituto.id }}">Vista Previa</a>
+        <a class="list-group-item disabled" href="{{ url_for('colegio_update') }}">Actualizar</a>
+      {% endif %}
+    {% endif %}
+  </ul>
+</div>

@@ -29,8 +29,9 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        picture_file = save_picture(form.image_file.data)  
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password, image_file=picture_file, role=form.role.data)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, role=form.role.data)
+        if form.image_file.data != None:
+            user.image_file = save_picture(form.image_file.data)
         db.session.add(user)
         db.session.commit()
         flash(f'Usuario {form.username.data} creado! Ya puedes ingresar.', 'success')
@@ -52,7 +53,7 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page=(request.args.get('next'))
             flash('Has ingresado al sistema!', 'success')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('user'))
         else:
             flash('Login Incorrecto. Por favor, comprueba el usuario y la contraseña', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -83,21 +84,22 @@ def save_picture(form_picture):
 """ 
 User home page.
 """
-@app.route("/user")
+@app.route("/user", methods=['GET', 'POST'])
 @login_required
 def user():
-    form = SearchForm()
-    c_form = CompareForm()
-    institutos = []
-    profile_pic = url_for('static', filename='profile_pics/' + current_user.image_file)
+    form = UpdateUserForm()
     if form.validate_on_submit():
-        institutos = Instituto.query.filter(Instituto.name.like('%{}%'.format(form.search.data))).all()
-        print(len(institutos))
-        if request.form.getlist('selected'):
-            session['selected'] = request.form.getlist('selected')
-            print(session['selected'])
-            return redirect(url_for('compare'))
-    return render_template('user.html', title='Usuario', profile_pic=profile_pic, form=form, c_form=c_form, institutos=institutos)
+        current_user.username = form.username.data
+        if form.image_file.data != None:
+            current_user.image_file = save_picture(form.image_file.data)
+        db.session.commit()
+        flash('Linformación de usuario ha sido acutualizada con éxito', 'success')
+        return redirect(url_for('user'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.image_file.data = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('user.html', title='Usuario', form=form)
 
 """
 User search page.
@@ -129,11 +131,12 @@ def user_update(user_id):
     form = UpdateUserForm()
 
     if form.validate_on_submit():
-        if form.image_file.data:
-            picture_file = save_picture(form.image_file.data)
-            current_user.image_file = picture_file
-            flash('Linformación de usuario ha sido acutualizada con éxito', 'success')
-            return redirect(url_for('user'))
+        current_user.username = form.username.data
+        if form.image_file.data != None:
+            current_user.image_file = save_picture(form.image_file.data)
+        db.session.commit()
+        flash('Linformación de usuario ha sido acutualizada con éxito', 'success')
+        return redirect(url_for('user'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
@@ -161,18 +164,18 @@ def colegio_create():
         abort(403)
     form = UpdateInstituteForm()
     if form.validate_on_submit():
-        picture_file = save_picture(form.cover_picture.data)
         instituto = Instituto( name=form.name.data, email=form.email.data, url=form.url.data, 
                             address=form.address.data, phone=form.phone.data, est=form.est.data, 
                             description=form.description.data, state=form.state.data, loc=form.loc.data, 
                             teachers=form.teachers.data, classrooms=form.classrooms.data, rel_conf=form.rel_conf.data, 
                             level=form.level.data, enrollment=form.enrollment.data, fee=form.fee.data, 
-                            responsable=current_user, cover_picture=picture_file )
-        print(instituto)
+                            responsable=current_user)
+        if form.cover_picture.data != None:
+            instituto.cover_picture = save_picture(form.cover_picture.data) 
         db.session.add(instituto)
         db.session.commit()
         flash('Instituto {} creado con exito'.format(instituto.name), 'success')
-        return redirect(url_for('colegio'))
+        return redirect(url_for('user'))
     elif request.method == 'GET':
         form.email.data = current_user.email
     return render_template('colegio_update.html', title='Datos del Instituto', form=form)
@@ -187,7 +190,6 @@ def colegio_update():
         abort(403)
     form = UpdateInstituteForm()
     if form.validate_on_submit():
-        picture_file = save_picture(form.cover_picture.data)
         instituto = Instituto.query.filter_by(responsable=current_user).first()
         instituto.name = form.name.data
         instituto.email = form.email.data
@@ -205,7 +207,8 @@ def colegio_update():
         instituto.enrollment = form.enrollment.data
         instituto.fee = form.fee.data
         responsable = current_user
-        cover_picture = picture_file
+        if form.cover_picture.data != None:
+            cover_picture = save_picture(form.cover_picture.data)
         db.session.commit()
         flash('Instituto actualizado con exito', 'success')
         return redirect(url_for('colegio_update'))
@@ -245,8 +248,6 @@ Colegio details page.
 @app.route("/instituto/details/<int:instituto_id>")
 @login_required
 def details(instituto_id):
-    if current_user.role != 'inst':
-        abort(403)
     instituto = Instituto.query.get_or_404(instituto_id)
     return render_template('details.html', title=instituto.name, instituto=instituto)
 

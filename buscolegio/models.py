@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_file = db.Column(db.String(20), nullable=False, default='default.png')
     password = db.Column(db.String(60), nullable=False)
     role = db.Column(db.String(20), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
@@ -23,7 +23,7 @@ class Instituto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     name = db.Column(db.String(120), nullable=False)
-    cover_picture = db.Column(db.String(120), nullable=True, default='image.png') # rename portada
+    cover_picture = db.Column(db.String(120), nullable=True, default='school.jpg')
     url = db.Column(db.String(120), nullable=True)
     address = db.Column(db.String(120), nullable=True)
     phone = db.Column(db.Integer, nullable=True)
@@ -31,8 +31,8 @@ class Instituto(db.Model):
     description = db.Column(db.String(256), nullable=True)
     state = db.Column(db.String(60), nullable=True)
     loc = db.Column(db.String(60), nullable=True)
-    teachers = db.Column(db.Integer, nullable=True) # rename profesores
-    classrooms = db.Column(db.Integer, nullable=True) # aulas (?)
+    teachers = db.Column(db.Integer, nullable=True)
+    classrooms = db.Column(db.Integer, nullable=True)
     rel_conf = db.Column(db.String(120), nullable=True)
     level = db.Column(db.String(60), nullable=True) 
     enrollment = db.Column(db.Numeric(20), nullable=True)
@@ -41,10 +41,8 @@ class Instituto(db.Model):
     user = db.relationship('User', backref='created_by', lazy=True)
     extras = db.relationship('Extra', backref='extra', lazy=True)
     
-
-
     def __repr__(self):
-        return f"Instituto('{self.id}' '{self.email}', '{self.name}', '{self.url}', '{self.email}')"
+        return f"Instituto('{self.id}' '{self.email}', '{self.name}', '{self.url}')"
 
 class Extra(db.Model):
     id = db.Column(db.Integer, primary_key=True)

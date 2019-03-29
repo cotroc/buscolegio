@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section">
-      <div class="profile-head">
-        <div>
-            <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}">
-        </div>
-        <div>
-          <h3 class="account-heading">{{ current_user.username }}</h3>
-          <p class="text-secondary">{{ current_user.email }}</p>
-        </div>
-      </div>
-    </div>
-    <a href="/user/{{ current_user.id }}/update">Actualizar datos</a>
-    <a href="{{ url_for('search') }}">Buscar Colegio</a>
+  <div class="flex-row">  
+    {% include 'user_menu.html' %}
+    <div id="grow" class="content-section">
+      {% if current_user.role == 'user' %}
+        <h3>Bienvenidos a Busco-Legio</h3>
+        <p>Aquí podras buscar colegio según diferentes criterios y compararlos entre sí.</p>
+      {% else %}
+        <h3>Bienvenidos a Busco-Legio</h3>
+        <p>Aquí podras ingresar un Colegio si no lo itenes o actualizar los dates del tuyo.</p>
+      {% endif %}
+    <div>
+  </div>
+
 {% endblock content %}

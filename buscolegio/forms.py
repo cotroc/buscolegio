@@ -9,7 +9,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Nombre *', validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Contraseña *', validators=[DataRequired()])
     confirm_password = PasswordField('Confirmar Contraseña *', validators=[DataRequired(), EqualTo('password')])
-    image_file = FileField('Imagen De Perfil *', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    image_file = FileField('Imagen De Perfil *', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     role = SelectField(u'Soy:', choices=[('user', 'Padre / Madre'), ('inst', 'Institución')])
     submit = SubmitField('Registrar')
 
@@ -33,7 +33,7 @@ class LoginForm(FlaskForm):
 class UpdateInstituteForm(FlaskForm):
     email = StringField('Email *', validators=[DataRequired(), Email()])
     name = StringField('Nombre Institución *', validators=[DataRequired(), Length(min=2, max=20)])
-    cover_picture = FileField('Imagen De Portada', validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    cover_picture = FileField('Imagen De Portada', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     url = StringField('Página Web')
     address = StringField('Dirección *', validators=[DataRequired()])
     phone =  IntegerField('Teléfono')
