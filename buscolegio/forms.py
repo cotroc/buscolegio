@@ -37,11 +37,11 @@ class UpdateInstituteForm(FlaskForm):
     url = StringField('Página Web')
     address = StringField('Dirección *', validators=[DataRequired()])
     phone =  IntegerField('Teléfono')
-    est = DateTimeField('Fundado', format='%m/%d/%y') # , validators=[DataRequired()]
+    est = DateTimeField('Fundado', format='%m/%d/%y')
     description = TextAreaField('Descripción')
     state = SelectField('Departamento', choices=[('Artigas', 'Artigas'), ('Canelones', 'Canelones'), ('Cerro Largo', 'Cerro Largo'),
                                                 ('Colonia', 'Colonia'), ('Durazno', 'Durazno'), ('Flores', 'Flores'), ('Florida', 'Florida'),
-                                                ('Lavalleja', 'Lavalleja'), ('Maldonado', 'Maldonado'), ('Montevidéo', 'Montevidéo'),
+                                                ('Lavalleja', 'Lavalleja'), ('Maldonado', 'Maldonado'), ('Montevideo', 'Montevideo'),
                                                 ('Paysandú', 'Paysandú'), ('Río Negro', 'Río Negro'), ('Rivera', 'Rivera'),
                                                 ('Rocha', 'Rocha'), ('Salto', 'Salto'), ('San José', 'San José'), ('Soriano', 'Soriano'),
                                                 ('Tacuarembó', 'Tacuarembó'), ('Treinta y Tres', 'Treinta y Tres')])

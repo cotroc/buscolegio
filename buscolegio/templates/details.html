@@ -41,11 +41,7 @@
                             <td>{{ instituto.classrooms }}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Nivel</th>
-                            <td>{{ instituto.level }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Confesion Religiosa</th>
+                            <th scope="row">Confesión Religiosa</th>
                             <td>{{ instituto.rel_conf }}</td>
                         </tr>
                         <tr>
@@ -55,6 +51,10 @@
                         <tr>
                             <th scope="row">Cuota</th>
                             <td>{{ instituto.fee }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Responsable</th>
+                            <td>{{ current_user.username }}</td>
                         </tr>
                     </tbody>
                 </table>

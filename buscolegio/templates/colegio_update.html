@@ -91,6 +91,7 @@
                             <div class="col">
                                 {{ form.est.label(class="form-control-label") }}
                                 {% if form.est.errors %}
+                                    {{ form.est(placeholder="28/06/80")}}
                                     {{ form.est(class="form-control form-control-lg is-invalid") }}
                                     <div class="invalid-feedback">
                                         {% for error in form.est.errors %}

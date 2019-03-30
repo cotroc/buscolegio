@@ -120,6 +120,7 @@ def search():
             session['selected'] = request.form.getlist('selected')
             print(session['selected'])
             return redirect(url_for('compare'))
+    flash(f'Consejo: Si realizas una busqueda con el campo vacío se listarán todos los Colegios', 'info')            
     return render_template('search.html', title='Usuario', profile_pic=profile_pic, form=form, c_form=c_form, institutos=institutos)
 
 """ 
